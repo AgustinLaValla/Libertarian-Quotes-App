@@ -1,0 +1,33 @@
+<div class="app">
+  <h2>Add or Edit a Libertarian Quote:</h2>
+  <div class="app__formWrap">
+    <label>quote:</label> 
+    <textarea #quote type="text" rows="6"></textarea>
+
+    <br>
+
+    <label>author:</label> 
+    <input #author type="text">
+
+    <button (click)="onSubmit({ 
+    quote: quote.value, 
+    author: author.value 
+  })"> Submit
+    </button>
+    <button *ngIf="update" (click)="cancelEdit()">Cancel</button>
+
+  </div>
+
+
+  <h1>Quotes</h1>
+  <div class="app__cardsContainer">
+    <div *ngFor="let quote of quotes | async">
+      <p>"{{quote.quote}}"</p>
+      <p>({{quote.author}})</p>
+      <div id="buttonsContainer">
+        <button (click)="editQuote(quote)">Edit</button>
+        <button (click)="deleteQuote(quote._id)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
